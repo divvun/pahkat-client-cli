@@ -1,0 +1,37 @@
+[package]
+name = "pahkat-client-cli"
+version = "0.1.0"
+authors = ["Brendan Molloy <brendan@bbqsrc.net>"]
+edition = "2018"
+
+[[bin]]
+name = "pahkat-mac"
+path = "src/bin/pahkat-mac.rs"
+required-features = ["macos"]
+
+[[bin]]
+name = "pahkat-win"
+path = "src/bin/pahkat-win.rs"
+required-features = ["windows"]
+
+[[bin]]
+name = "pahkat-prefix"
+path = "src/bin/pahkat-prefix.rs"
+required-features = ["prefix"]
+
+[dependencies]
+pahkat_client = { git = "https://github.com/divvun/pahkat-client-core", branch = "develop" }
+sentry = "0.17.0"
+log = "0.4.8"
+clap = "2.33.0"
+termcolor = "1.1.0"
+indicatif = "0.13.0"
+better-panic = "0.2.0"
+env_logger = "0.7.1"
+itertools = "0.8.2"
+
+[features]
+default = []
+windows = ["pahkat_client/windows"]
+macos = ["pahkat_client/macos"]
+prefix = ["pahkat_client/prefix"]
